@@ -1,52 +1,44 @@
 def translate(str)
-    # Vowels to consider
+    # voyelles
     vowels = ["a", "e", "i", "o", "u"]
 
-    # Special cases to consider
+    # Cas spéciaux a prendre en compte
     two_letter_consonants = ["ch", "sh", "qu", "th", "br"]
     three_letter_consonants = ["thr", "sch", "squ"]
 
-    # Seperate each word from the phrase given
+    # séparer chaques mots de la phrase donnée
     words = str.split(" ")
 
-    #Location for processed words
+    #Tableau ou on envoie le résultat
     result = [];
 
-
-
     words.each do |word|
-        # Words that start with a vowels
+        # If pour les mots qui commnencent par une voyelle
         if vowels.include? word[0]
             result.push word << 'ay'
 
-        # Words that start with a consonant
+        # Else pour les mots qui commencent par une consonne
         else
-            # Check for special consonants
+            # test pour cas spéciaux de consonnes
             if three_letter_consonants.include? word[0] + word[1] + word[2]
-                # Slice off first three letters
+                # déplacer les 3 première lettres
                 first_three_letters = word.slice!(0,3)
 
-                # Add letters to end of word with 'ay'
+                # ajouter ay
                 result.push word << first_three_letters << 'ay'
 
+                #on fait pareil avec les cas particulier de 2 lettres
             elsif  two_letter_consonants.include? word[0] + word[1]
-                # Slice off first two letters
                 first_two_letters = word.slice!(0,2)
-
-                # Add the letters to end of word with 'ay'
                 result.push word << first_two_letters << 'ay'
 
+                #et ici pour la première lettre en consonne
             else
-                # Slice off first letter...
                 first_letter = word.slice!(0)
-
-                # Add first letter to end of word with 'ay'
                 result.push word << first_letter << 'ay'
-            end #End of special consonant check
-
-        end #End of vowel check      
-    end #End of words.each
-    #Present the processed words as a single string
+            end
+        end
+    end
+    # on remet chaque mots ensemble sous la forme d'une seule chaine.
     return result.join(" ")
-
-end #End of translate function
+end

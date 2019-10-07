@@ -34,8 +34,6 @@ def titleize(string)
   end
 end
 
-private
-
 def little_word?(string)
-  ["and", "or", "of", "in", "a", "the", "over"].include?(string)
+  ["and", "or", "of", "in", "a", "the"].include?(string)
 end
